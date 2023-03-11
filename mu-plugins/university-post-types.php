@@ -2,6 +2,7 @@
 
 function university_post_types()
 {
+  // Event post type
   register_post_type('event', array(
     'show_in_rest' => true,
     'supports' => array('title', 'editor', 'excerpt'),
@@ -18,6 +19,7 @@ function university_post_types()
     'menu_icon' => 'dashicons-calendar'
   ));
 
+  // Program post type
   register_post_type('program', array(
     'show_in_rest' => true,
     'supports' => array('title', 'editor'),
