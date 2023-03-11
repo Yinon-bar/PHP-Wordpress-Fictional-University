@@ -9,23 +9,21 @@ get_header(); ?>
     <div class="page-banner__intro">
       <p>See what is going on in our world.</p>
     </div>
-  </div>
+  </div>  
 </div>
 
 <div class="container container--narrow page-section">
-  <?php
-  while (have_posts()) {
+<?php
+  
+  while(have_posts()) {
     the_post(); ?>
     <div class="event-summary">
       <a class="event-summary__date t-center" href="#">
         <span class="event-summary__month"><?php
-                                            $eventDate = new DateTime(get_field('event_date'));
-                                            echo $eventDate->format('M')
-                                            ?></span>
-        <span class="event-summary__day"><?php
-                                          $eventDate = new DateTime(get_field('event_date'));
-                                          echo $eventDate->format('d')
-                                          ?></span>
+          $eventDate = new DateTime(get_field('event_date'));
+          echo $eventDate->format('M')
+        ?></span>
+        <span class="event-summary__day"><?php echo $eventDate->format('d') ?></span>  
       </a>
       <div class="event-summary__content">
         <h5 class="event-summary__title headline headline--tiny"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h5>
@@ -34,11 +32,12 @@ get_header(); ?>
     </div>
   <?php }
   echo paginate_links();
-  ?>
+?>
 
-  <hr class="section-break">
+<hr class="section-break">
 
-  <p>Looking for a recap of past events? <a href="/past-events">Click here</a> </p>
+<p>Looking for a recap of past events? <a href="<?php echo site_url('/past-events') ?>">Check out our past events archive</a>.</p>
+
 </div>
 
 <?php get_footer();

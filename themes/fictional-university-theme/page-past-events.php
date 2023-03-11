@@ -7,14 +7,14 @@ get_header(); ?>
   <div class="page-banner__content container container--narrow">
     <h1 class="page-banner__title">Past Events</h1>
     <div class="page-banner__intro">
-      <p>A recap of our past events</p>
+      <p>A recap of our past events.</p>
     </div>
-  </div>
+  </div>  
 </div>
 
 <div class="container container--narrow page-section">
-  <?php
-
+<?php
+  
   $today = date('Ymd');
   $pastEvents = new WP_Query(array(
     'paged' => get_query_var('paged', 1),
@@ -27,23 +27,20 @@ get_header(); ?>
         'key' => 'event_date',
         'compare' => '<',
         'value' => $today,
-        'type' => 'numeric',
-      ),
-    ),
+        'type' => 'numeric'
+      )
+    )
   ));
 
-  while ($pastEvents->have_posts()) {
+  while($pastEvents->have_posts()) {
     $pastEvents->the_post(); ?>
     <div class="event-summary">
       <a class="event-summary__date t-center" href="#">
         <span class="event-summary__month"><?php
-                                            $eventDate = new DateTime(get_field('event_date'));
-                                            echo $eventDate->format('M')
-                                            ?></span>
-        <span class="event-summary__day"><?php
-                                          $eventDate = new DateTime(get_field('event_date'));
-                                          echo $eventDate->format('d')
-                                          ?></span>
+          $eventDate = new DateTime(get_field('event_date'));
+          echo $eventDate->format('M')
+        ?></span>
+        <span class="event-summary__day"><?php echo $eventDate->format('d') ?></span>  
       </a>
       <div class="event-summary__content">
         <h5 class="event-summary__title headline headline--tiny"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h5>
@@ -54,7 +51,7 @@ get_header(); ?>
   echo paginate_links(array(
     'total' => $pastEvents->max_num_pages
   ));
-  ?>
+?>
 </div>
 
 <?php get_footer();
