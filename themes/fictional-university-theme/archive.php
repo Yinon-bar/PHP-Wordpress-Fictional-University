@@ -8,7 +8,7 @@ get_header(); ?>
     <h1 class="page-banner__title"><?php the_archive_title(); ?></h1>
     <div class="page-banner__intro">
       <p><?php the_archive_description(); ?></p>
-      <h3>test3</h3>
+      <h3>test2</h3>
     </div>
   </div>  
 </div>
